@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gallery of Us</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <header>
+        <h1>The Gallery of Us</h1>
+    </header>
+    <main>
+        <h2>Selamat Datang di Website Kita</h2>
+        <p>Hai sayang, aku membuat website ini khusus untukmu sebagai bukti cintaku. Di sini kita bisa berbagi kenangan indah dan momen-momen spesial kita.</p>
+        <h3>Mengapa Aku Mencintaimu</h3>
+        <ul>
+            <li>Kamu selalu ada untukku dalam suka dan duka</li>
+            <li>Senyummu adalah sumber kebahagiaanku</li>
+            <li>Kita saling melengkapi satu sama lain</li>
+            <li>Bersamamu, aku merasa menjadi versi terbaik dari diriku</li>
+        </ul>
+        <p>Aku berharap kita bisa terus bersama dan membangun masa depan yang indah. Aku mencintaimu!</p>
+        <h3>Galeri Foto Kita</h3>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://thumbnails-photos.amazon.com/v1/thumbnail/44ZoV93gQKOUUTra-K-egg?viewBox=716%2C955&ownerId=A11YI1Z8K1ZZLQ&groupShareToken=bz2CcK2TTSGPqY7QvM0UmQ.y24-8_jv5_0W8Ceaqrq7q4" alt="Foto 1" onclick="showFullscreen(this.src)">
+            </div>
+            <div class="gallery-item">
+                <img src="https://thumbnails-photos.amazon.com/v1/thumbnail/Ft3wGzcKRSKgkaxsSPDZAg?viewBox=716%2C955&ownerId=A11YI1Z8K1ZZLQ&groupShareToken=bz2CcK2TTSGPqY7QvM0UmQ.y24-8_jv5_0W8Ceaqrq7q4" alt="Foto 2" onclick="showFullscreen(this.src)">
+            </div>
+            <div class="gallery-item">
+                <img src="https://thumbnails-photos.amazon.com/v1/thumbnail/lCyVHUqtR8GcoZL4fo0yzg?viewBox=537%2C955&ownerId=A11YI1Z8K1ZZLQ&groupShareToken=bz2CcK2TTSGPqY7QvM0UmQ.y24-8_jv5_0W8Ceaqrq7q4" alt="Foto 3" onclick="showFullscreen(this.src)">
+            </div>
+            <div class="gallery-item">
+                <img src="https://thumbnails-photos.amazon.com/v1/thumbnail/JlSdpokWQQy1pIXhvi7udw?viewBox=716%2C955&ownerId=A11YI1Z8K1ZZLQ&groupShareToken=bz2CcK2TTSGPqY7QvM0UmQ.y24-8_jv5_0W8Ceaqrq7q4" alt="Foto 4" onclick="showFullscreen(this.src)">
+            </div>
+            <div class="gallery-item">
+                <img src="https://thumbnails-photos.amazon.com/v1/thumbnail/I_SxaMcjTxOuVbpijYtWdQ?viewBox=716%2C955&ownerId=A11YI1Z8K1ZZLQ&groupShareToken=bz2CcK2TTSGPqY7QvM0UmQ.y24-8_jv5_0W8Ceaqrq7q4" alt="Foto 5" onclick="showFullscreen(this.src)">
+            </div>
+            <div class="gallery-item">
+                <img src="https://thumbnails-photos.amazon.com/v1/thumbnail/aMRA_rbcRje0qC6l34e-gg?viewBox=716%2C955&ownerId=A11YI1Z8K1ZZLQ&groupShareToken=bz2CcK2TTSGPqY7QvM0UmQ.y24-8_jv5_0W8Ceaqrq7q4" alt="Foto 6" onclick="showFullscreen(this.src)">
+            </div>
+        </div>
+    </main>
+    <div id="fullscreenContainer" class="fullscreen" onclick="this.style.display='none'">
+        <img id="fullscreenImage" src="" alt="Fullscreen Image">
+    </div>
+    
+    <div id="love-counter">Love: <span id="count">0</span></div>
+    
+    <script>
+        let loveCount = 0;
+        const countElement = document.getElementById('count');
+        
+        function createLove() {
+            const love = document.createElement('div');
+            love.innerHTML = '❤️';
+            love.classList.add('love');
+            love.style.left = Math.random() * window.innerWidth + 'px';
+            love.style.top = '-50px'; // Mulai dari atas layar
+            
+            love.addEventListener('click', () => {
+                love.remove();
+                loveCount++;
+                countElement.textContent = loveCount;
+                createLove();
+            });
+            
+            document.body.appendChild(love);
+            
+            animateLove(love);
+        }
+        
+        function animateLove(love) {
+            let speed = 1 + Math.random() * 3; // Kecepatan jatuh acak
+            
+            function move() {
+                let top = parseFloat(love.style.top);
+                top += speed;
+                love.style.top = top + 'px';
+                
+                if (top > window.innerHeight) {
+                    // Jika hati sudah melewati batas bawah layar, kembalikan ke atas
+                    love.style.top = '-50px';
+                    love.style.left = Math.random() * window.innerWidth + 'px';
+                }
+                
+                requestAnimationFrame(move);
+            }
+            
+            move();
+        }
+        
+        // Buat beberapa hati saat halaman dimuat
+        for (let i = 0; i < 10; i++) {
+            createLove();
+        }
+        
+        function showFullscreen(src) {
+            const fullscreenContainer = document.getElementById('fullscreenContainer');
+            const fullscreenImage = document.getElementById('fullscreenImage');
+            fullscreenImage.src = src;
+            fullscreenContainer.style.display = 'flex';
+        }
+        
+        // Tambahkan event listener untuk mengatur ulang posisi hati saat ukuran layar berubah
+        window.addEventListener('resize', () => {
+            const hearts = document.querySelectorAll('.love');
+            hearts.forEach(heart => {
+                heart.style.left = Math.random() * window.innerWidth + 'px';
+            });
+        });
+    </script>
+</body>
+</html>
