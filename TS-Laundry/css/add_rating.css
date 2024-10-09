@@ -1,0 +1,200 @@
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  background: #cd5c08;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.container .text {
+  font-size: 25px;
+  color: white;
+  font-weight: 600;
+}
+
+.container .post {
+  display: none;
+}
+
+.container .edit {
+  position: absolute;
+  right: 10px;
+  font-size: 16px;
+  top: 5px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.container .edit:hover {
+  text-decoration: underline;
+}
+
+.container .star-widget input {
+  display: none;
+}
+
+.star-widget {
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.star-widget label {
+  font-size: 40px;
+  color: black;
+  padding: 5px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.star-widget label {
+  white-space: nowrap;
+}
+
+
+input:not(:checked)~label:hover,
+input:not(:checked)~label:hover~label {
+  color: #fff;
+}
+
+input:checked~label {
+  color: #fff;
+}
+
+input#rate-5:checked~label {
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 20px #fff;
+}
+
+#rate-1:checked~form header:before {
+  content: "Tidak direkomendasikan, buruk!";
+}
+
+#rate-2:checked~form header:before {
+  content: "Kurang baik. Perlu banyak perbaikan.";
+}
+
+#rate-3:checked~form header:before {
+  content: "Cukup bagus, tapi bisa lebih baik.";
+}
+
+#rate-4:checked~form header:before {
+  content: "Layanan baik dan cepat. Saya puas.";
+}
+
+#rate-5:checked~form header:before {
+  content: "Nice! Sangat puas dan senang.";
+}
+
+.container form {
+  display: none;
+}
+
+input:checked~form {
+  display: block;
+}
+
+form header {
+  width: 100%;
+  font-size: 25px;
+  color: #fff;
+  font-weight: 500;
+  margin: 5px 0 20px 0;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+form .textarea {
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
+}
+
+form .textarea textarea {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border-radius: 8px;
+  color: #fff;
+  border: 1px solid #fff;
+  background: #0c0c0c36;
+  padding: 10px;
+  font-size: 18px;
+  resize: none;
+}
+
+form .textarea textarea ::placeholder {
+  color: black;
+}
+
+form .btn {
+  height: 45px;
+  width: 100%;
+  margin: 15px 0;
+}
+
+form .btn button {
+  height: 100%;
+  width: 100%;
+  border: 1px solid #444;
+  outline: none;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #000000;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: all 0.5s ease;
+}
+
+form .btn button:hover {
+  background: #f8f8f8c9;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .star-widget label {
+    font-size: 30px;
+  }
+
+  .star-widget {
+    justify-content: space-around;
+  }
+
+  .star-widget header {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .star-widget label {
+    font-size: 30px;
+  }
+
+  .star-widget {
+    justify-content: space-between;
+  }
+
+  .star-widget header {
+    font-size: 18px;
+  }
+}
